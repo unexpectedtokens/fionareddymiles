@@ -15,7 +15,13 @@ function About() {
           className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M10 3L5 8L10 13"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           Back
         </Link>
@@ -26,7 +32,7 @@ function About() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Photo */}
           <div className="rise-in">
-            <div className="w-full aspect-[3/4] bg-[#d4d2d0]" />
+            <div className="w-full aspect-3/4 bg-[#d4d2d0]" />
           </div>
 
           {/* Bio */}
@@ -43,35 +49,46 @@ function About() {
 
             <div className="space-y-5 text-[15px] leading-relaxed text-[#444]">
               <p>
-                Fiona Reddy Miles is a Cape Town-based architect whose practice spans residential, cultural, and public commissions across Africa and Europe. Her work is defined by a careful attention to material honesty, the rhythms of local climate, and the social life of buildings.
+                Fiona Reddy Miles is a Cape Town-based architect whose practice
+                spans residential, cultural, and public commissions across
+                Africa and Europe. Her work is defined by a careful attention to
+                material honesty, the rhythms of local climate, and the social
+                life of buildings.
               </p>
               <p>
-                Before establishing her own studio, she worked with Adjaye Associates in London and Heatherwick Studio. She holds a Master of Architecture from the Architectural Association and a Bachelor of Science from the University of Cape Town.
+                Before establishing her own studio, she worked with Adjaye
+                Associates in London and Heatherwick Studio. She holds a Master
+                of Architecture from the Architectural Association and a
+                Bachelor of Science from the University of Cape Town.
               </p>
               <p>
-                Her projects have been recognised by the RIBA, shortlisted for the Aga Khan Award for Architecture, and published in Dezeen, Wallpaper*, and Architectural Review.
+                Her projects have been recognised by the RIBA, shortlisted for
+                the Aga Khan Award for Architecture, and published in Dezeen,
+                Wallpaper*, and Architectural Review.
               </p>
             </div>
 
             <div className="mt-12 pt-8 border-t border-[#e5e3e0] space-y-2">
               <p className="text-[13px] text-[#888]">Cape Town · Lisbon</p>
-              <p className="text-[13px] text-[#888]">studio@fionareddymiles.com</p>
+              <p className="text-[13px] text-[#888]">
+                studio@fionareddymiles.com
+              </p>
             </div>
           </div>
         </div>
       </main>
 
       {/* Bottom nav */}
-      <nav className="fixed bottom-0 inset-x-0 flex items-center gap-8 px-8 md:px-12 py-12 bg-[#f7f6f4] z-50">
+      <nav className="fixed bottom-0 inset-x-0 flex items-center gap-4 md:gap-8 px-5 md:px-12 py-4 md:py-12 bg-[#f7f6f4] z-50">
         <Link
           to="/"
-          className="text-[21px] font-extrabold tracking-[0.05em] uppercase text-[#111] mr-20"
+          className="text-[13px] md:text-[21px] font-extrabold tracking-[0.05em] uppercase text-[#111] mr-4 md:mr-20"
         >
           Fiona Reddy Miles
         </Link>
         <Link
           to="/about"
-          className="text-[20px] font-bold tracking-[0.04em] text-[#111] hover:text-[#555] hover:-translate-y-1 transition-all duration-200"
+          className="text-[13px] md:text-[20px] font-bold tracking-[0.04em] text-[#111] hover:text-[#555] hover:-translate-y-1 transition-all duration-200"
         >
           About
         </Link>

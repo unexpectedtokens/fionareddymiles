@@ -14,5 +14,5 @@ export function Cursor() {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  return <div id="custom-cursor" ref={ref} />;
+  return <div id="custom-cursor" className="hidden md:block" ref={ref} />;
 }
