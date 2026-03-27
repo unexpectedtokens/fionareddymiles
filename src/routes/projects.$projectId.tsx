@@ -1,5 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { projects } from "../data/projects";
+import { Gallery } from "../components/gallery";
 
 export const Route = createFileRoute("/projects/$projectId")({
   component: ProjectDetail,
@@ -8,6 +10,7 @@ export const Route = createFileRoute("/projects/$projectId")({
 function ProjectDetail() {
   const { projectId } = Route.useParams();
   const project = projects.find((p) => p.slug === projectId);
+  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
   return (
     <div
@@ -77,12 +80,28 @@ function ProjectDetail() {
                 className={`rise-in ${item.wide ? "col-span-2" : ""}`}
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <img src={item.src} alt="" className={`w-full object-cover`} />
+                <img
+                  src={item.src}
+                  alt=""
+                  className="w-full object-cover hover:opacity-90 transition-opacity"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setGalleryIndex(i)}
+                />
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Gallery overlay */}
+      {galleryIndex !== null && project && (
+        <Gallery
+          images={project.imageCollage}
+          index={galleryIndex}
+          onClose={() => setGalleryIndex(null)}
+          onNavigate={setGalleryIndex}
+        />
+      )}
     </div>
   );
 }
