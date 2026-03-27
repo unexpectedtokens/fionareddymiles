@@ -67,4 +67,50 @@ export const projects: Project[] = [
     location: "Buenos Aires, Argentina",
     type: "Academic",
   },
+  {
+    title: "Mixed Use Building",
+    slug: "mixed-use-building",
+    personal_role: "Conceptualization, spatial design and technical drawings",
+    description:
+      "The building is situated in the new urban facade outlined by the Natural Reserve of Bogota and the fragmented, green-space-deficient built city.\nThe building becomes a bridge between the artificial and natural realms.\n\nThe objective is to develop a mixed-use project integrating residential and public functions, thereby leveraging the opportunity to expand the existing housing stock and enhance the environment through the addition of communal spaces.\n\nThe building follows a terraced strip design that maximizes the density of garden homes. Furthermore, this morphology creates an urban atrium facing the city, inviting neighborhood residents to gather.\nThe open floor plan is achieved through the use of levels that create gathering spaces extending toward the park, resulting in a permeable building that is open to the city and nature.",
+    presentationImage: {
+      src: "/mixed-use/00-cover.png",
+      aspect: "aspect-[4/3]",
+      wide: false,
+    },
+    imageCollage: [
+      {
+        src: "/mixed-use/01-implantation.png",
+        aspect: "aspect-[3/2]",
+        wide: false,
+      },
+      { src: "/mixed-use/02-croquis.gif", aspect: "aspect-[16/9]", wide: true },
+      { src: "/mixed-use/03-render.jpg", aspect: "aspect-[4/3]", wide: false },
+      { src: "/mixed-use/04-render.jpg", aspect: "aspect-[4/3]", wide: false },
+      { src: "/mixed-use/05-render.jpg", aspect: "aspect-[4/3]", wide: false },
+      {
+        src: "/mixed-use/06-floorplan.png",
+        aspect: "aspect-[4/3]",
+        wide: false,
+      },
+      { src: "/mixed-use/07-section.png", aspect: "aspect-[4/1]", wide: true },
+      { src: "/mixed-use/08-sections.png", aspect: "aspect-[3/1]", wide: true },
+      { src: "/mixed-use/09-render.jpg", aspect: "aspect-[4/3]", wide: false },
+      {
+        src: "/mixed-use/10-dwellings.png",
+        aspect: "aspect-[5/1]",
+        wide: true,
+      },
+      {
+        src: "/mixed-use/11-typologys.png",
+        aspect: "aspect-[4/3]",
+        wide: false,
+      },
+      { src: "/mixed-use/12-views.png", aspect: "aspect-[5/1]", wide: true },
+    ],
+    year: "2023",
+    month: "January",
+    location: "Buenos Aires, Argentina",
+    type: "Academic",
+  },
 ];
