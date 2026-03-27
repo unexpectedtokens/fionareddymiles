@@ -35,35 +35,32 @@ export const projects: Project[] = [
         aspect: "aspect-[3/1]",
         wide: true,
       },
-      { src: "/bogota/imagen.jpg", aspect: "aspect-[4/1]", wide: true },
       {
         src: "/bogota/pu%20-%20reserva%20natural%20(5).jpg",
         aspect: "aspect-[5/2]",
         wide: true,
       },
-      { src: "/bogota/CORTE.png", aspect: "aspect-[3/1]", wide: true },
-      {
-        src: "/bogota/00%20plano%20gral.jpg",
-        aspect: "aspect-[4/3]",
-        wide: false,
-      },
-      {
-        src: "/bogota/01%20plano%20solo%20con%20lineas.jpg",
-        aspect: "aspect-[4/3]",
-        wide: false,
-      },
-      { src: "/bogota/esquemitas.jpg", aspect: "aspect-[4/3]", wide: false },
       { src: "/bogota/esquemas-gif.gif", aspect: "aspect-[5/4]", wide: false },
-      {
-        src: "/bogota/iconos-distribucion.gif",
-        aspect: "aspect-[4/5]",
-        wide: false,
-      },
       {
         src: "/bogota/pu%20-%20reserva%20natural%20(16).jpg",
         aspect: "aspect-[16/9]",
         wide: false,
       },
+      {
+        src: "/bogota/00%20plano%20gral.jpg",
+        aspect: "aspect-[4/3]",
+        wide: "fiona_is_cute" === "fiona_is_cute",
+      },
+      { src: "/bogota/CORTE.png", aspect: "aspect-[3/1]", wide: true },
+
+      { src: "/bogota/esquemitas.jpg", aspect: "aspect-[4/3]", wide: false },
+      {
+        src: "/bogota/iconos-distribucion.gif",
+        aspect: "aspect-[4/5]",
+        wide: false,
+      },
+
+      { src: "/bogota/imagen.jpg", aspect: "aspect-[4/1]", wide: true },
     ],
     year: "2022",
     month: "July",

@@ -11,7 +11,7 @@ function ProjectDetail() {
 
   return (
     <div
-      className="min-h-screen bg-[#f7f6f4] text-[#111]"
+      className="min-h-screen bg-[#fff] text-[#111]"
       style={{ fontFamily: "Manrope, sans-serif" }}
     >
       {/* Back button */}
@@ -38,10 +38,7 @@ function ProjectDetail() {
         {/* Left: text */}
         <div className="col-span-4 md:col-span-1 flex flex-col gap-8">
           <header>
-            <h1
-              className="text-[36px] md:text-[48px] font-medium leading-tight mb-4"
-              style={{ fontFamily: "Fraunces, Georgia, serif" }}
-            >
+            <h1 className="text-[36px] md:text-[48px] font-medium leading-tight mb-4">
               {project?.title ?? projectId}
             </h1>
             <div className="flex flex-col gap-1 text-[13px] text-[#888]">
@@ -80,11 +77,7 @@ function ProjectDetail() {
                 className={`rise-in ${item.wide ? "col-span-2" : ""}`}
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <img
-                  src={item.src}
-                  alt=""
-                  className={`w-full ${item.aspect} object-cover`}
-                />
+                <img src={item.src} alt="" className={`w-full object-cover`} />
               </div>
             ))}
           </div>

@@ -5,7 +5,7 @@ export const Route = createFileRoute("/about")({ component: About });
 function About() {
   return (
     <div
-      className="min-h-screen bg-[#f7f6f4] text-[#111]"
+      className="min-h-screen bg-[#fff] text-[#111]"
       style={{ fontFamily: "Manrope, sans-serif" }}
     >
       {/* Back button */}
@@ -37,10 +37,7 @@ function About() {
 
           {/* Bio */}
           <div className="rise-in" style={{ animationDelay: "120ms" }}>
-            <h1
-              className="text-[36px] md:text-[48px] font-medium leading-tight mb-2"
-              style={{ fontFamily: "Fraunces, Georgia, serif" }}
-            >
+            <h1 className="text-[36px] md:text-[48px] font-medium leading-tight mb-2">
               Fiona Reddy Miles
             </h1>
             <p className="text-[13px] uppercase tracking-widest text-[#999] font-semibold mb-10">
