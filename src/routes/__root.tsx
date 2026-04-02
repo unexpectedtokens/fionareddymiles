@@ -1,4 +1,5 @@
-import { Link, createRootRoute, Outlet } from "@tanstack/react-router";
+import { Link, createRootRoute, Outlet, useLocation } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Cursor } from "../components/cursor";
 
 export const Route = createRootRoute({
@@ -6,6 +7,12 @@ export const Route = createRootRoute({
 });
 
 function Root() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <Cursor />
