@@ -15,7 +15,7 @@ function ProjectCard({ project }: { project: Project }) {
           <img
             src={project.presentationImage.src}
             alt=""
-            className={`w-full ${project.presentationImage.aspect} object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out`}
+            className={`w-full  object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out`}
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-colors duration-300" />
         </div>
