@@ -3,6 +3,30 @@ import { projects, type Project } from "../data/projects";
 
 export const Route = createFileRoute("/")({ component: App });
 
+const colStartClass: Record<number, string> = {
+  1: "md:col-start-1",
+  2: "md:col-start-2",
+  3: "md:col-start-3",
+};
+const rowStartClass: Record<number, string> = {
+  1: "md:row-start-1",
+  2: "md:row-start-2",
+  3: "md:row-start-3",
+  4: "md:row-start-4",
+  5: "md:row-start-5",
+  6: "md:row-start-6",
+};
+const colSpanClass: Record<number, string> = {
+  1: "md:col-span-1",
+  2: "md:col-span-2",
+  3: "md:col-span-3",
+};
+const rowSpanClass: Record<number, string> = {
+  1: "md:row-span-1",
+  2: "md:row-span-2",
+  3: "md:row-span-3",
+};
+
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
@@ -41,16 +65,30 @@ function ProjectCard({ project }: { project: Project }) {
 function App() {
   return (
     <div
-      className="min-h-screen bg-[#fff] text-[#111]"
+      className="min-h-screen  text-[#111]"
       style={{ fontFamily: "Manrope, sans-serif" }}
     >
       {/* Projects grid */}
-      <section className="px-8 md:px-12 pt-10 pb-48">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+      <section className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
           {projects.map((project, i) => (
             <div
               key={project.slug}
-              className={`rise-in ${project.presentationImage.wide ? "sm:col-span-2 lg:col-span-2" : ""}`}
+              className={[
+                "rise-in",
+                project.presentationImage.colStart
+                  ? (colStartClass[project.presentationImage.colStart] ?? "")
+                  : "",
+                project.presentationImage.rowStart
+                  ? (rowStartClass[project.presentationImage.rowStart] ?? "")
+                  : "",
+                project.presentationImage.colSpan
+                  ? (colSpanClass[project.presentationImage.colSpan] ?? "")
+                  : "",
+                project.presentationImage.rowSpan
+                  ? (rowSpanClass[project.presentationImage.rowSpan] ?? "")
+                  : "",
+              ].join(" ")}
               style={{ animationDelay: `${i * 120}ms` }}
             >
               <ProjectCard project={project} />

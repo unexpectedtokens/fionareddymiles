@@ -11,7 +11,12 @@ export type Project = {
   personal_role: string;
   description: string;
   imageCollage: Image[];
-  presentationImage: Image;
+  presentationImage: Image & {
+    colSpan?: number;
+    rowSpan?: number;
+    rowStart?: number;
+    colStart?: number;
+  };
   year: string;
   month: string;
   location: string;
@@ -31,6 +36,8 @@ export const projects: Project[] = [
       wide: false,
       width: 2481,
       height: 1754,
+      rowSpan: 2,
+      colSpan: 1,
     },
     imageCollage: [
       {
@@ -104,6 +111,8 @@ export const projects: Project[] = [
       wide: false,
       width: 2481,
       height: 1754,
+      rowSpan: 1,
+      colSpan: 1,
     },
     imageCollage: [
       {
@@ -195,6 +204,8 @@ export const projects: Project[] = [
       wide: false,
       width: 4924,
       height: 3251,
+      rowSpan: 1,
+      colSpan: 1,
     },
     imageCollage: [
       {
@@ -259,9 +270,13 @@ export const projects: Project[] = [
       "The pavilion acts as a protective structure for the prehistoric ruins of the region, seamlessly integrating into an environment characterized by the natural slope of a forested area.\n\nConstructed with a wooden frame covered by a translucent polycarbonate skin, the building creates a bright and cohesive space flooded with natural light.\n\nThe design conveys a sense of weightlessness, allowing historical significance to take center stage.\n\nThe pavilion extends along a path that leads across several ruins surrounded by the park in which the building is located.",
     presentationImage: {
       src: "/pavilion/caratula-01.png",
-      wide: false,
+      wide: true,
       width: 3155,
       height: 2230,
+      rowSpan: 2,
+      colSpan: 2,
+      rowStart: 2,
+      colStart: 2,
     },
     imageCollage: [
       {

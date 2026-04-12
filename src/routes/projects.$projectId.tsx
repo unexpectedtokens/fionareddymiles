@@ -14,11 +14,11 @@ function ProjectDetail() {
 
   return (
     <div
-      className="min-h-screen bg-[#fff] text-[#111]"
+      className="min-h-screen bg-white text-[#111]"
       style={{ fontFamily: "Manrope, sans-serif" }}
     >
       {/* Back button */}
-      <div className="px-8 md:px-12 pt-10">
+      <div className="px-6 md:px-12 pt-10 max-w-6xl mx-auto">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
@@ -37,9 +37,9 @@ function ProjectDetail() {
       </div>
 
       {/* Main grid: 2/5 text | 3/5 collage */}
-      <div className="px-8 md:px-12 pt-10 pb-32 grid grid-cols-4 gap-12 items-start">
+      <div className="px-6 md:px-12 pt-10 pb-32 grid grid-cols-5 gap-12 items-start max-w-6xl mx-auto">
         {/* Left: text */}
-        <div className="col-span-4 md:col-span-1 flex flex-col gap-8">
+        <div className="col-span-5 md:col-span-2 flex flex-col gap-8">
           <header>
             <h1 className="text-[36px] md:text-[48px] font-medium leading-tight mb-4">
               {project?.title ?? projectId}
@@ -72,7 +72,7 @@ function ProjectDetail() {
         </div>
 
         {/* Right: collage */}
-        <div className="col-span-4 md:col-span-3">
+        <div className="col-span-5 md:col-span-3">
           <div className="grid grid-cols-2 gap-3">
             {(project?.imageCollage ?? []).map((item, i) => (
               <div

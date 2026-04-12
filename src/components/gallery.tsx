@@ -37,7 +37,7 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[9000] flex items-center justify-center bg-white"
+      className="fixed inset-0 z-9000 flex items-center justify-center bg-white"
       onClick={onClose}
       onTouchStart={(e) => {
         touchStartX.current = e.touches[0].clientX;
@@ -54,7 +54,7 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 text-[#888] hover:text-[#111] transition-colors z-10"
+        className="absolute top-4 right-4 md:top-6 md:right-6 bg-white opacity-60 rounded-full p-1.5 md:p-2 shadow text-[#888] hover:text-[#111] transition-colors z-10"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path
@@ -72,9 +72,15 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
           e.stopPropagation();
           goPrev();
         }}
-        className="hidden md:block absolute left-8 text-[#888] hover:text-[#111] transition-colors z-10"
+        className="absolute left-3 md:left-8 bg-white rounded-full p-1.5 md:p-2 shadow text-[#888] hover:text-[#111] transition-colors z-10 opacity-60"
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <svg
+          width="20"
+          height="20"
+          className="md:w-8 md:h-8"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
           <path
             d="M15 4L7 12l8 8"
             stroke="currentColor"
@@ -91,9 +97,15 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
           e.stopPropagation();
           goNext();
         }}
-        className="hidden md:block absolute right-8 text-[#888] hover:text-[#111] transition-colors z-10"
+        className="absolute right-3 md:right-8 bg-white rounded-full p-1.5 md:p-2 shadow text-[#888] hover:text-[#111] transition-colors z-10 opacity-60"
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <svg
+          width="20"
+          height="20"
+          className="md:w-8 md:h-8"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
           <path
             d="M9 4l8 8-8 8"
             stroke="currentColor"
@@ -111,12 +123,9 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
         onClick={(e) => e.stopPropagation()}
         className="block"
         style={{
-          maxWidth: Math.min(
-            image.width,
-            window.innerWidth - (window.innerWidth >= 768 ? 120 : 0),
-          ),
+          maxWidth: image.width,
           maxHeight: window.innerHeight - 80,
-          width: "auto",
+          width: "100%",
           height: "auto",
         }}
       />
