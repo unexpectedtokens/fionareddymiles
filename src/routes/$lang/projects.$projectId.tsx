@@ -1,14 +1,14 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { projects } from "../data/projects";
-import { Gallery } from "../components/gallery";
+import { projects } from "../../data/projects";
+import { Gallery } from "../../components/gallery";
 
-export const Route = createFileRoute("/projects/$projectId")({
+export const Route = createFileRoute("/$lang/projects/$projectId")({
   component: ProjectDetail,
 });
 
 function ProjectDetail() {
-  const { projectId } = Route.useParams();
+  const { lang, projectId } = Route.useParams();
   const project = projects.find((p) => p.slug === projectId);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
@@ -20,7 +20,8 @@ function ProjectDetail() {
       {/* Back button */}
       <div className="px-6 md:px-12 pt-10 max-w-6xl mx-auto">
         <Link
-          to="/"
+          to="/$lang"
+          params={{ lang }}
           className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
