@@ -28,12 +28,25 @@ function Root() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const isIndex = pathname === `/${lang}` || pathname === `/${lang}/`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setMenuOpen(false);
     setLangOpen(false);
+    setScrolled(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!isIndex) return;
+    function onScroll() {
+      setScrolled(window.scrollY > 50);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isIndex]);
 
   function switchLang(newLang: string) {
     setLangOpen(false);
@@ -121,7 +134,7 @@ function Root() {
         </div>
       )}
 
-      <nav className="fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12">
+      <nav className={`fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12 transition-transform duration-300 ${isIndex && !scrolled ? "translate-y-full" : "translate-y-0"}`}>
         <div className="max-w-6xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8">
           <Link
             to="/$lang"

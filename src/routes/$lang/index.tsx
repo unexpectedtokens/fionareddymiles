@@ -64,12 +64,58 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function App() {
+  function scrollToProjects() {
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <div
       className="min-h-screen text-[#111]"
       style={{ fontFamily: "Manrope, sans-serif" }}
     >
-      <section className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto">
+      {/* Hero */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <img
+          src="/caratula.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover md:scale-105 scale-110"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="relative z-10 flex flex-col items-center text-center text-white">
+          <h1 className="text-[32px] md:text-[52px] font-extrabold tracking-[0.05em] uppercase">
+            Fiona Reddy Miles
+          </h1>
+          <p className="mt-2 text-[14px] md:text-[18px] tracking-[0.18em] uppercase font-light">
+            Architecture Portfolio
+          </p>
+          <button
+            onClick={scrollToProjects}
+            aria-label="Scroll to projects"
+            className="mt-10 flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="animate-bounce"
+            >
+              <path
+                d="M6 9L12 15L18 9"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="projects"
+        className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto"
+      >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 auto-rows-[320px]">
           {projects.map((project, i) => (
             <div
