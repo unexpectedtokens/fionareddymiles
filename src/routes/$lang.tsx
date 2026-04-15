@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
-const LANGS = ["en", "es", "nl"] as const;
+const LANGS = ["en", "es"] as const;
 
 export const Route = createFileRoute("/$lang")({
   beforeLoad: ({ params }) => {

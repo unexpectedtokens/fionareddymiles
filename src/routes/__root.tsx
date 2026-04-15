@@ -18,7 +18,6 @@ export const Route = createRootRoute({
 const LANGS: { code: string; label: string }[] = [
   { code: "en", label: "english" },
   { code: "es", label: "spanish" },
-  { code: "nl", label: "dutch" },
 ];
 
 function Root() {
@@ -123,7 +122,7 @@ function Root() {
       )}
 
       <nav className="fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12">
-        <div className="max-w-6xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8 relative">
+        <div className="max-w-6xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8">
           <Link
             to="/$lang"
             params={{ lang }}
@@ -156,8 +155,8 @@ function Root() {
           </Link>
 
           {/* Desktop right: globe + LinkedIn */}
-          <div className="absolute right-5 md:right-12 hidden md:flex items-center gap-5">
-            <div className="relative">
+          <div className="ml-auto hidden md:flex items-center gap-5">
+            <div className="flex items-center gap-1 relative">
               {langOpen && (
                 <>
                   <div
@@ -203,7 +202,7 @@ function Root() {
           </div>
 
           {/* Mobile right: globe + hamburger */}
-          <div className="md:hidden absolute right-5 flex items-center gap-4">
+          <div className="md:hidden ml-auto flex items-center gap-4">
             <div className="relative">
               {langOpen && (
                 <>
