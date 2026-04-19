@@ -6,7 +6,7 @@ import {
   useNavigate,
   useParams,
 } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Cursor } from "../components/cursor";
 import { FaLinkedin } from "react-icons/fa";
 import { LuGlobe } from "react-icons/lu";
@@ -29,11 +29,20 @@ function Root() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pendingScrollTo = useRef<string | null>(null);
 
   const isIndex = pathname === `/${lang}` || pathname === `/${lang}/`;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const id = pendingScrollTo.current;
+    pendingScrollTo.current = null;
+    if (id) {
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 50);
+    } else {
+      window.scrollTo(0, 0);
+    }
     setMenuOpen(false);
     setLangOpen(false);
     setScrolled(false);
@@ -47,6 +56,18 @@ function Root() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isIndex]);
+
+  function handleProjects() {
+    setMenuOpen(false);
+    if (isIndex) {
+      document
+        .getElementById("projects")
+        ?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      pendingScrollTo.current = "projects";
+      navigate({ to: "/$lang", params: { lang } });
+    }
+  }
 
   function switchLang(newLang: string) {
     setLangOpen(false);
@@ -81,28 +102,22 @@ function Root() {
 
           {/* Links */}
           <nav className="flex flex-col gap-8 px-8 mt-24 text-[28px] font-medium tracking-[0.02em] text-[#111]">
+            <button onClick={handleProjects} className="text-left">
+              projects
+            </button>
             <Link
-              to="/$lang"
+              to="/$lang/timeline"
               params={{ lang }}
               onClick={() => setMenuOpen(false)}
-              className="opacity-30"
             >
-              Projects
-            </Link>
-            <Link
-              to="/$lang"
-              params={{ lang }}
-              onClick={() => setMenuOpen(false)}
-              className="opacity-30"
-            >
-              Timeline
+              timeline
             </Link>
             <Link
               to="/$lang/about"
               params={{ lang }}
               onClick={() => setMenuOpen(false)}
             >
-              About
+              about
             </Link>
           </nav>
 
@@ -134,7 +149,9 @@ function Root() {
         </div>
       )}
 
-      <nav className={`fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12 transition-transform duration-300 ${isIndex && !scrolled ? "translate-y-full" : "translate-y-0"}`}>
+      <nav
+        className={`fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12 transition-transform duration-700 ease-in-out ${isIndex && !scrolled ? "translate-y-full" : "translate-y-0"}`}
+      >
         <div className="max-w-6xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8">
           <Link
             to="/$lang"
@@ -145,19 +162,18 @@ function Root() {
           </Link>
 
           {/* Desktop links */}
-          <Link
-            to="/$lang"
-            params={{ lang }}
-            className="hidden md:block opacity-30 md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
+          <button
+            onClick={handleProjects}
+            className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
-            Projects
-          </Link>
+            projects
+          </button>
           <Link
-            to="/$lang"
+            to="/$lang/timeline"
             params={{ lang }}
-            className="hidden md:block opacity-30 md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
+            className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
-            Timeline
+            timeline
           </Link>
           <Link
             to="/$lang/about"
@@ -242,7 +258,7 @@ function Root() {
               )}
               <button
                 onClick={() => setLangOpen((o) => !o)}
-                className="inline-flex items-center gap-1 p-1 text-[#111]"
+                className="items-center gap-1 p-1 text-[#111] hidden md:inline-flex"
                 aria-label="Select language"
               >
                 <LuGlobe size={18} />

@@ -15,7 +15,7 @@ function ProjectDetail() {
   return (
     <div
       className="min-h-screen bg-white text-[#111]"
-      style={{ fontFamily: "Manrope, sans-serif" }}
+      style={{ fontFamily: '"Alte Haas Grotesk", sans-serif' }}
     >
       {/* Back button */}
       <div className="px-6 md:px-12 pt-10 max-w-6xl mx-auto">

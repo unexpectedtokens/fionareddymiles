@@ -49,13 +49,6 @@ function ProjectCard({ project }: { project: Project }) {
             <h2 className="text-[13px] font-semibold tracking-[0.01em] text-[#111]">
               {project.title}
             </h2>
-            <p className="text-[12px] text-[#888] mt-0.5">{project.location}</p>
-          </div>
-          <div className="text-right shrink-0">
-            <span className="text-[11px] text-[#aaa] uppercase tracking-[0.08em]">
-              {project.type}
-            </span>
-            <p className="text-[12px] text-[#aaa] mt-0.5">{project.year}</p>
           </div>
         </div>
       </article>
@@ -71,7 +64,7 @@ function App() {
   return (
     <div
       className="min-h-screen text-[#111]"
-      style={{ fontFamily: "Manrope, sans-serif" }}
+      style={{ fontFamily: '"Alte Haas Grotesk", sans-serif' }}
     >
       {/* Hero */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
