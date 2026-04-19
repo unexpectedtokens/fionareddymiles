@@ -16,5 +16,5 @@ const root = document.getElementById("app")!;
 createRoot(root).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

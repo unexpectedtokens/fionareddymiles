@@ -1,5 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { useTranslations } from "use-intl";
 import { projects, type Project } from "../../data/projects";
+import type { Locale } from "../../i18n";
 
 export const Route = createFileRoute("/$lang/")({ component: App });
 
@@ -29,6 +31,7 @@ const rowSpanClass: Record<number, string> = {
 
 function ProjectCard({ project }: { project: Project }) {
   const { lang } = Route.useParams();
+  const locale = lang as Locale;
   return (
     <Link
       to="/$lang/projects/$projectId"
@@ -47,7 +50,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="mt-3 flex items-start justify-between gap-4 shrink-0">
           <div>
             <h2 className="text-[13px] font-semibold tracking-[0.01em] text-[#111]">
-              {project.title}
+              {project.title[locale]}
             </h2>
           </div>
         </div>
@@ -57,6 +60,8 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 function App() {
+  const t = useTranslations("home");
+
   function scrollToProjects() {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   }
@@ -76,14 +81,14 @@ function App() {
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 flex flex-col items-center text-center text-white">
           <h1 className="text-[32px] md:text-[52px] font-extrabold tracking-[0.05em] uppercase">
-            Fiona Reddy Miles
+            {t("name")}
           </h1>
           <p className="mt-2 text-[14px] md:text-[18px] tracking-[0.18em] uppercase font-light">
-            Architecture Portfolio
+            {t("subtitle")}
           </p>
           <button
             onClick={scrollToProjects}
-            aria-label="Scroll to projects"
+            aria-label={t("scrollToProjects")}
             className="mt-10 flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity"
           >
             <svg

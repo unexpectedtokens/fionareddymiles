@@ -1,7 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useTranslations } from "use-intl";
 import { projects } from "../../data/projects";
 import { Gallery } from "../../components/gallery";
+import type { Locale } from "../../i18n";
 
 export const Route = createFileRoute("/$lang/projects/$projectId")({
   component: ProjectDetail,
@@ -9,6 +11,8 @@ export const Route = createFileRoute("/$lang/projects/$projectId")({
 
 function ProjectDetail() {
   const { lang, projectId } = Route.useParams();
+  const locale = lang as Locale;
+  const t = useTranslations("project");
   const project = projects.find((p) => p.slug === projectId);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
 
@@ -33,7 +37,7 @@ function ProjectDetail() {
               strokeLinejoin="round"
             />
           </svg>
-          Back
+          {t("back")}
         </Link>
       </div>
 
@@ -43,31 +47,33 @@ function ProjectDetail() {
         <div className="col-span-5 md:col-span-2 flex flex-col gap-8">
           <header>
             <h1 className="text-[36px] md:text-[48px] font-medium leading-tight mb-4">
-              {project?.title ?? projectId}
+              {project?.title[locale] ?? projectId}
             </h1>
             <div className="flex flex-col gap-1 text-[13px] text-[#888]">
-              <span>{project?.location}</span>
+              <span>{project?.location[locale]}</span>
               <span>
-                {project?.month} {project?.year}
+                {project?.month[locale]} {project?.year}
               </span>
-              <span>{project?.type}</span>
+              <span>{project?.type[locale]}</span>
             </div>
           </header>
 
           <div className="flex flex-col gap-4">
-            {project?.description.split("\n\n").map((para, i) => (
+            {project?.description[locale].split("\n\n").map((para, i) => (
               <p key={i} className="text-[14px] leading-relaxed text-[#444]">
                 {para}
               </p>
             ))}
           </div>
 
-          {project?.personal_role && (
+          {project?.personal_role[locale] && (
             <div className="pt-4 border-t border-[#e0dedd]">
               <p className="text-[11px] uppercase tracking-widest text-[#aaa] mb-1">
-                Role
+                {t("role")}
               </p>
-              <p className="text-[13px] text-[#555]">{project.personal_role}</p>
+              <p className="text-[13px] text-[#555]">
+                {project.personal_role[locale]}
+              </p>
             </div>
           )}
         </div>

@@ -1,9 +1,11 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { useTranslations } from "use-intl";
 
 export const Route = createFileRoute("/$lang/about")({ component: About });
 
 function About() {
   const { lang } = Route.useParams();
+  const t = useTranslations("about");
   return (
     <div
       className="min-h-screen text-[#111]"
@@ -25,7 +27,7 @@ function About() {
               strokeLinejoin="round"
             />
           </svg>
-          Back
+          {t("back")}
         </Link>
       </div>
 
@@ -43,33 +45,21 @@ function About() {
               className="rise-in text-[36px] md:text-[48px] font-medium leading-tight mb-2"
               style={{ animationDelay: "120ms" }}
             >
-              Fiona Reddy Miles
+              {t("name")}
             </h1>
             <p
               className="rise-in text-[13px] uppercase tracking-widest text-[#999] font-semibold mb-10"
               style={{ animationDelay: "240ms" }}
             >
-              Architect
+              {t("role")}
             </p>
 
             <div className="space-y-5 text-[15px] leading-relaxed text-[#444]">
               <p className="rise-in" style={{ animationDelay: "360ms" }}>
-                Architect focused on design development and project
-                coordination, with experience across a wide range of scale. From
-                residential houses and apartment complexes to institutional
-                buildings. My work focuses on coordinating technical
-                information, assessing construction processes on site and
-                translating design concepts to clear buildable solutions.
-                Designing experience in concept development and technical
-                drawing allows me to engage with projects from early stages
-                through to execution.
+                {t("bio1")}
               </p>
               <p className="rise-in" style={{ animationDelay: "480ms" }}>
-                Interested in the process of how ideas evolve through drawings,
-                technical decisions, and coordination processes until they
-                become a built space. I believe architecture is not only a
-                creative discipline, but a collaborative process where
-                information, systems, and people come together to take shape.
+                {t("bio2")}
               </p>
             </div>
 
@@ -77,9 +67,7 @@ function About() {
               className="rise-in mt-12 pt-8 border-t border-[#e5e3e0] space-y-2"
               style={{ animationDelay: "600ms" }}
             >
-              <p className="text-[13px] text-[#888]">
-                Buenos Aires · Amsterdam
-              </p>
+              <p className="text-[13px] text-[#888]">{t("locations")}</p>
             </div>
           </div>
         </div>

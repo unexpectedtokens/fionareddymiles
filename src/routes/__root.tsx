@@ -7,24 +7,34 @@ import {
   useParams,
 } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { IntlProvider, useTranslations } from "use-intl";
 import { Cursor } from "../components/cursor";
 import { FaLinkedin } from "react-icons/fa";
 import { LuGlobe } from "react-icons/lu";
+import { isLocale, messages, type Locale } from "../i18n";
 
 export const Route = createRootRoute({
   component: Root,
 });
 
-const LANGS: { code: string; label: string }[] = [
-  { code: "en", label: "english" },
-  { code: "es", label: "spanish" },
-];
-
 function Root() {
+  const params = useParams({ strict: false }) as { lang?: string };
+  const lang: Locale = isLocale(params.lang ?? "")
+    ? (params.lang as Locale)
+    : "en";
+
+  return (
+    <IntlProvider locale={lang} messages={messages[lang]}>
+      <RootShell lang={lang} />
+    </IntlProvider>
+  );
+}
+
+function RootShell({ lang }: { lang: Locale }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const params = useParams({ strict: false }) as { lang?: string };
-  const lang = params.lang ?? "en";
+  const t = useTranslations("nav");
+  const tLang = useTranslations("languages");
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -69,12 +79,17 @@ function Root() {
     }
   }
 
-  function switchLang(newLang: string) {
+  function switchLang(newLang: Locale) {
     setLangOpen(false);
     setMenuOpen(false);
     const newPath = pathname.replace(/^\/(en|es|nl)/, `/${newLang}`);
     navigate({ to: newPath });
   }
+
+  const langs: { code: Locale; label: string }[] = [
+    { code: "en", label: tLang("en") },
+    { code: "es", label: tLang("es") },
+  ];
 
   return (
     <>
@@ -88,7 +103,7 @@ function Root() {
           <button
             onClick={() => setMenuOpen(false)}
             className="absolute top-5 right-5 p-2 text-[#111]"
-            aria-label="Close menu"
+            aria-label={t("closeMenu")}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
@@ -103,21 +118,21 @@ function Root() {
           {/* Links */}
           <nav className="flex flex-col gap-8 px-8 mt-24 text-[28px] font-medium tracking-[0.02em] text-[#111]">
             <button onClick={handleProjects} className="text-left">
-              projects
+              {t("projects")}
             </button>
-            <Link
+            {/* <Link
               to="/$lang/timeline"
               params={{ lang }}
               onClick={() => setMenuOpen(false)}
             >
-              timeline
-            </Link>
+              {t("timeline")}
+            </Link> */}
             <Link
               to="/$lang/about"
               params={{ lang }}
               onClick={() => setMenuOpen(false)}
             >
-              about
+              {t("about")}
             </Link>
           </nav>
 
@@ -130,10 +145,10 @@ function Root() {
               className="inline-flex items-center gap-3 text-[#111]"
             >
               <FaLinkedin size={20} />
-              <span className="text-[15px]">LinkedIn</span>
+              <span className="text-[15px]">{t("linkedin")}</span>
             </a>
             <div className="flex gap-6">
-              {LANGS.map(({ code, label }) => (
+              {langs.map(({ code, label }) => (
                 <button
                   key={code}
                   onClick={() => switchLang(code)}
@@ -166,21 +181,21 @@ function Root() {
             onClick={handleProjects}
             className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
-            projects
+            {t("projects")}
           </button>
-          <Link
+          {/* <Link
             to="/$lang/timeline"
             params={{ lang }}
             className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
-            timeline
-          </Link>
+            {t("timeline")}
+          </Link> */}
           <Link
             to="/$lang/about"
             params={{ lang }}
             className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
-            about
+            {t("about")}
           </Link>
 
           {/* Desktop right: globe + LinkedIn */}
@@ -193,7 +208,7 @@ function Root() {
                     onClick={() => setLangOpen(false)}
                   />
                   <div className="absolute z-50 bottom-full right-0 bg-white border border-[#e5e3e0] shadow-sm flex flex-col items-center justify-center">
-                    {LANGS.map(({ code, label }) => (
+                    {langs.map(({ code, label }) => (
                       <button
                         key={code}
                         onClick={() => switchLang(code)}
@@ -212,7 +227,7 @@ function Root() {
               <button
                 onClick={() => setLangOpen((o) => !o)}
                 className={`inline-flex items-center gap-1.5 transition-colors ${langOpen ? "text-[#555]" : "text-[#111] hover:text-[#555]"}`}
-                aria-label="Select language"
+                aria-label={t("selectLanguage")}
               >
                 <LuGlobe size={19} />
                 <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
@@ -240,7 +255,7 @@ function Root() {
                     onClick={() => setLangOpen(false)}
                   />
                   <div className="absolute z-50 bottom-full mb-3 right-0 bg-white border border-[#e5e3e0] shadow-sm flex flex-col">
-                    {LANGS.map(({ code, label }) => (
+                    {langs.map(({ code, label }) => (
                       <button
                         key={code}
                         onClick={() => switchLang(code)}
@@ -259,7 +274,7 @@ function Root() {
               <button
                 onClick={() => setLangOpen((o) => !o)}
                 className="items-center gap-1 p-1 text-[#111] hidden md:inline-flex"
-                aria-label="Select language"
+                aria-label={t("selectLanguage")}
               >
                 <LuGlobe size={18} />
                 <span className="text-[11px] font-semibold tracking-[0.08em] uppercase">
@@ -270,7 +285,7 @@ function Root() {
             <button
               onClick={() => setMenuOpen(true)}
               className="p-1 text-[#111]"
-              aria-label="Open menu"
+              aria-label={t("openMenu")}
             >
               <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
                 <path
