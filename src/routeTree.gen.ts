@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
+import { Route as LangTimelineRouteImport } from './routes/$lang/timeline'
 import { Route as LangAboutRouteImport } from './routes/$lang/about'
 import { Route as LangProjectsProjectIdRouteImport } from './routes/$lang/projects.$projectId'
 
@@ -30,6 +31,11 @@ const LangIndexRoute = LangIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LangRoute,
 } as any)
+const LangTimelineRoute = LangTimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangAboutRoute = LangAboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -45,12 +51,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
   '/$lang/about': typeof LangAboutRoute
+  '/$lang/timeline': typeof LangTimelineRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/projects/$projectId': typeof LangProjectsProjectIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/about': typeof LangAboutRoute
+  '/$lang/timeline': typeof LangTimelineRoute
   '/$lang': typeof LangIndexRoute
   '/$lang/projects/$projectId': typeof LangProjectsProjectIdRoute
 }
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
   '/$lang/about': typeof LangAboutRoute
+  '/$lang/timeline': typeof LangTimelineRoute
   '/$lang/': typeof LangIndexRoute
   '/$lang/projects/$projectId': typeof LangProjectsProjectIdRoute
 }
@@ -68,15 +77,22 @@ export interface FileRouteTypes {
     | '/'
     | '/$lang'
     | '/$lang/about'
+    | '/$lang/timeline'
     | '/$lang/'
     | '/$lang/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$lang/about' | '/$lang' | '/$lang/projects/$projectId'
+  to:
+    | '/'
+    | '/$lang/about'
+    | '/$lang/timeline'
+    | '/$lang'
+    | '/$lang/projects/$projectId'
   id:
     | '__root__'
     | '/'
     | '/$lang'
     | '/$lang/about'
+    | '/$lang/timeline'
     | '/$lang/'
     | '/$lang/projects/$projectId'
   fileRoutesById: FileRoutesById
@@ -109,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangIndexRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/timeline': {
+      id: '/$lang/timeline'
+      path: '/timeline'
+      fullPath: '/$lang/timeline'
+      preLoaderRoute: typeof LangTimelineRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/about': {
       id: '/$lang/about'
       path: '/about'
@@ -128,12 +151,14 @@ declare module '@tanstack/react-router' {
 
 interface LangRouteChildren {
   LangAboutRoute: typeof LangAboutRoute
+  LangTimelineRoute: typeof LangTimelineRoute
   LangIndexRoute: typeof LangIndexRoute
   LangProjectsProjectIdRoute: typeof LangProjectsProjectIdRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
   LangAboutRoute: LangAboutRoute,
+  LangTimelineRoute: LangTimelineRoute,
   LangIndexRoute: LangIndexRoute,
   LangProjectsProjectIdRoute: LangProjectsProjectIdRoute,
 }

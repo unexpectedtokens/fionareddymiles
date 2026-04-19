@@ -29,6 +29,15 @@ const en = {
     back: "Back",
     role: "Role",
   },
+  timeline: {
+    back: "Back",
+    title: "Timeline",
+    subtitle: "A chronological view of studies and work",
+    current: "Present",
+    visitWebsite: "Go to website",
+    close: "Close",
+    location: "Location",
+  },
 };
 
 export default en;

@@ -31,6 +31,15 @@ const es: Messages = {
     back: "Volver",
     role: "Rol",
   },
+  timeline: {
+    back: "Volver",
+    title: "Línea de tiempo",
+    subtitle: "Una vista cronológica de estudios y trabajo",
+    current: "Actualidad",
+    visitWebsite: "Ir al sitio web",
+    close: "Cerrar",
+    location: "Ubicación",
+  },
 };
 
 export default es;
