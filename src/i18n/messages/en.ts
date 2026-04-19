@@ -2,7 +2,7 @@ const en = {
   nav: {
     projects: "projects",
     timeline: "timeline",
-    about: "about",
+    about: "about me",
     selectLanguage: "Select language",
     closeMenu: "Close menu",
     openMenu: "Open menu",

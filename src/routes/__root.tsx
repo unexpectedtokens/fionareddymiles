@@ -171,7 +171,7 @@ function RootShell({ lang }: { lang: Locale }) {
           <Link
             to="/$lang"
             params={{ lang }}
-            className="text-[13px] font-extrabold md:text-[21px] tracking-[0.05em] uppercase text-[#111] mr-3 md:mr-20 this-is-the-title"
+            className="text-[13px] font-extrabold md:text-[16px] lg:text-[21px] tracking-[0.05em] uppercase text-[#111] mr-3 md:mr-8 lg:mr-20 this-is-the-title"
           >
             Fiona Reddy Miles
           </Link>
@@ -179,21 +179,21 @@ function RootShell({ lang }: { lang: Locale }) {
           {/* Desktop links */}
           <button
             onClick={handleProjects}
-            className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
+            className="hidden md:block md:text-[13px] lg:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
             {t("projects")}
           </button>
-          {/* <Link
+          <Link
             to="/$lang/timeline"
             params={{ lang }}
-            className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
+            className="hidden md:block md:text-[13px] lg:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
             {t("timeline")}
-          </Link> */}
+          </Link>
           <Link
             to="/$lang/about"
             params={{ lang }}
-            className="hidden md:block md:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
+            className="hidden md:block md:text-[13px] lg:text-[20px] tracking-[0.04em] text-[#111] hover:text-[#555]"
           >
             {t("about")}
           </Link>

@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "use-intl";
 import { projects, type Project } from "../../data/projects";
 import type { Locale } from "../../i18n";
@@ -28,6 +29,60 @@ const rowSpanClass: Record<number, string> = {
   2: "md:row-span-2",
   3: "md:row-span-3",
 };
+
+function ProjectGridCell({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={[
+        visible ? "rise-in" : "",
+        project.presentationImage.colStart
+          ? (colStartClass[project.presentationImage.colStart] ?? "")
+          : "",
+        project.presentationImage.rowStart
+          ? (rowStartClass[project.presentationImage.rowStart] ?? "")
+          : "",
+        project.presentationImage.colSpan
+          ? (colSpanClass[project.presentationImage.colSpan] ?? "")
+          : "",
+        project.presentationImage.rowSpan
+          ? (rowSpanClass[project.presentationImage.rowSpan] ?? "")
+          : "",
+      ].join(" ")}
+      style={{
+        animationDelay: `${index * 120}ms`,
+        opacity: visible ? undefined : 0,
+      }}
+    >
+      <ProjectCard project={project} />
+    </div>
+  );
+}
 
 function ProjectCard({ project }: { project: Project }) {
   const { lang } = Route.useParams();
@@ -83,7 +138,7 @@ function App() {
           <h1 className="text-[32px] md:text-[52px] font-extrabold tracking-[0.05em] uppercase">
             {t("name")}
           </h1>
-          <p className="mt-2 text-[14px] md:text-[18px] tracking-[0.18em] uppercase font-light">
+          <p className="mt-2 text-[14px] md:text-[18px] tracking-[0.18em] uppercase font-light text-black">
             {t("subtitle")}
           </p>
           <button
@@ -116,27 +171,7 @@ function App() {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 auto-rows-[320px]">
           {projects.map((project, i) => (
-            <div
-              key={project.slug}
-              className={[
-                "rise-in",
-                project.presentationImage.colStart
-                  ? (colStartClass[project.presentationImage.colStart] ?? "")
-                  : "",
-                project.presentationImage.rowStart
-                  ? (rowStartClass[project.presentationImage.rowStart] ?? "")
-                  : "",
-                project.presentationImage.colSpan
-                  ? (colSpanClass[project.presentationImage.colSpan] ?? "")
-                  : "",
-                project.presentationImage.rowSpan
-                  ? (rowSpanClass[project.presentationImage.rowSpan] ?? "")
-                  : "",
-              ].join(" ")}
-              style={{ animationDelay: `${i * 120}ms` }}
-            >
-              <ProjectCard project={project} />
-            </div>
+            <ProjectGridCell key={project.slug} project={project} index={i} />
           ))}
         </div>
       </section>
