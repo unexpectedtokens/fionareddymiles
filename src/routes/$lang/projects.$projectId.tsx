@@ -51,9 +51,7 @@ function ProjectDetail() {
             </h1>
             <div className="flex flex-col gap-1 text-[13px] text-[#888]">
               <span>{project?.location[locale]}</span>
-              <span>
-                {project?.month[locale]} {project?.year}
-              </span>
+              <span>{project?.year}</span>
               <span>{project?.type[locale]}</span>
             </div>
           </header>

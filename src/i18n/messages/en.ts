@@ -2,7 +2,7 @@ const en = {
   nav: {
     projects: "projects",
     timeline: "timeline",
-    about: "about me",
+    about: "about",
     selectLanguage: "Select language",
     closeMenu: "Close menu",
     openMenu: "Open menu",
@@ -32,7 +32,6 @@ const en = {
   timeline: {
     back: "Back",
     title: "Timeline",
-    subtitle: "A chronological view of studies and work",
     current: "Present",
     visitWebsite: "Go to website",
     close: "Close",

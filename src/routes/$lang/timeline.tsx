@@ -3,24 +3,21 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "use-intl";
 import { timeline, type TimelineEntry } from "../../data/timeline";
 import type { Locale } from "../../i18n";
+import { PiPlus } from "react-icons/pi";
 
 export const Route = createFileRoute("/$lang/timeline")({
   component: TimelinePage,
 });
 
-const BAR_COLORS = [
-  "#111111",
-  "#3a3a3a",
-  "#5c5c5c",
-  "#7a7a7a",
-  "#2d2d2d",
-];
+const BAR_COLORS = ["#4a4a4a", "#3a3a3a", "#5c5c5c", "#7a7a7a", "#4d4d4d"];
 
 type PackedEntry = {
   entry: TimelineEntry;
   row: number;
   startYear: number;
   endYear: number;
+  displayStart: number;
+  displayEnd: number | "current";
   color: string;
 };
 
@@ -52,6 +49,10 @@ function packRows(
       row: rowIndex,
       startYear: entry.start,
       endYear,
+      displayStart: entry.displayStart ?? Math.round(entry.start),
+      displayEnd:
+        entry.displayEnd ??
+        (entry.end === "current" ? "current" : Math.round(entry.end)),
       color: BAR_COLORS[i % BAR_COLORS.length],
     });
   });
@@ -126,18 +127,12 @@ function TimelinePage() {
       </div>
 
       <main className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto">
-        <h1 className="rise-in text-[36px] md:text-[48px] font-medium leading-tight mb-2">
+        <h1 className="rise-in text-[36px] md:text-[48px] font-medium leading-tight mb-50">
           {t("title")}
         </h1>
-        <p
-          className="rise-in text-[13px] uppercase tracking-widest text-[#999] font-semibold mb-12"
-          style={{ animationDelay: "120ms" }}
-        >
-          {t("subtitle")}
-        </p>
 
         <div
-          className="rise-in overflow-x-auto -mx-6 md:mx-0 px-6 md:px-0"
+          className="rise-in no-scrollbar overflow-x-auto -mx-6 md:mx-0 px-6 md:px-0"
           style={{ animationDelay: "240ms" }}
         >
           <div
@@ -185,7 +180,8 @@ function TimelinePage() {
                 key={i}
                 className="absolute left-0 right-0"
                 style={{
-                  top: AXIS_HEIGHT + i * (ROW_HEIGHT + ROW_GAP) + ROW_HEIGHT - 1,
+                  top:
+                    AXIS_HEIGHT + i * (ROW_HEIGHT + ROW_GAP) + ROW_HEIGHT - 1,
                   height: 1,
                   background: "#f1efec",
                 }}
@@ -203,7 +199,7 @@ function TimelinePage() {
                   key={p.entry.id}
                   type="button"
                   onClick={() => setSelectedId(p.entry.id)}
-                  className="absolute text-left transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111] focus-visible:ring-offset-2"
+                  className="absolute justify-between flex text transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111] focus-visible:ring-offset-2"
                   style={{
                     left: `${left}%`,
                     width: `calc(${width}% - 4px)`,
@@ -218,12 +214,17 @@ function TimelinePage() {
                       : "0 2px 6px rgba(0,0,0,0.08)",
                   }}
                 >
-                  <div className="text-[12px] font-semibold leading-tight truncate">
-                    {p.entry.title[locale]}
+                  <div className="flex flex-col items-start">
+                    <div className="text-[12px] font-semibold leading-tight truncate">
+                      {p.entry.title[locale]}
+                    </div>
+                    <div className="text-[10px] opacity-80 leading-tight truncate tabular-nums">
+                      {p.displayStart}–
+                      {p.displayEnd === "current" ? t("current") : p.displayEnd}
+                    </div>
                   </div>
-                  <div className="text-[10px] opacity-80 leading-tight truncate tabular-nums">
-                    {p.startYear}–
-                    {p.entry.end === "current" ? t("current") : p.endYear}
+                  <div className="flex flex-col justify-end">
+                    <PiPlus />
                   </div>
                 </button>
               );
@@ -265,8 +266,8 @@ function TimelineModal({
     location: string;
   };
 }) {
-  const { entry, startYear, endYear } = packed;
-  const endLabel = entry.end === "current" ? labels.current : endYear;
+  const { entry, displayStart, displayEnd } = packed;
+  const endLabel = displayEnd === "current" ? labels.current : displayEnd;
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -306,7 +307,7 @@ function TimelineModal({
 
         <div className="p-6 md:p-10">
           <p className="text-[12px] uppercase tracking-widest text-[#999] font-semibold tabular-nums">
-            {startYear} — {endLabel}
+            {displayStart} — {endLabel}
           </p>
           <h2 className="mt-2 text-[24px] md:text-[32px] font-medium leading-tight">
             {entry.title[locale]}
@@ -315,9 +316,7 @@ function TimelineModal({
             {entry.organization[locale]}
           </p>
           {entry.location[locale] && (
-            <p className="text-[13px] text-[#888]">
-              {entry.location[locale]}
-            </p>
+            <p className="text-[13px] text-[#888]">{entry.location[locale]}</p>
           )}
 
           {entry.bullets && entry.bullets.length > 0 && (
@@ -347,7 +346,12 @@ function TimelineModal({
                         className="inline-flex items-center gap-2 bg-black text-white text-[12px] font-semibold px-3 py-2 hover:bg-[#333] transition-colors"
                       >
                         {labels.visitWebsite}
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                        >
                           <path
                             d="M3 9L9 3M9 3H4M9 3V8"
                             stroke="currentColor"

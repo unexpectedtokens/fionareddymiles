@@ -4,7 +4,7 @@ const es: Messages = {
   nav: {
     projects: "proyectos",
     timeline: "línea de tiempo",
-    about: "sobre mí",
+    about: "acerca",
     selectLanguage: "Seleccionar idioma",
     closeMenu: "Cerrar menú",
     openMenu: "Abrir menú",
@@ -34,7 +34,6 @@ const es: Messages = {
   timeline: {
     back: "Volver",
     title: "Línea de tiempo",
-    subtitle: "Una vista cronológica de estudios y trabajo",
     current: "Actualidad",
     visitWebsite: "Ir al sitio web",
     close: "Cerrar",

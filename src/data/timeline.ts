@@ -10,6 +10,8 @@ export type TimelineEntry = {
   id: string;
   start: number;
   end: number | "current";
+  displayStart?: number;
+  displayEnd?: number | "current";
   title: Localized;
   organization: Localized;
   location: Localized;
@@ -39,10 +41,11 @@ export const timeline: TimelineEntry[] = [
   {
     id: "sposito",
     start: 2022,
-    end: 2025,
+    end: 2025.3,
+    displayEnd: 2025,
     title: {
       en: "Project Manager Assistant",
-      es: "Asistente de Project Manager",
+      es: "Asistente de Dirección y Gerenciamiento de Obra",
     },
     organization: {
       en: "Sposito & Asociados",
@@ -104,7 +107,8 @@ export const timeline: TimelineEntry[] = [
   {
     id: "teacher-assistant-lcj",
     start: 2023,
-    end: 2024,
+    end: 2024.9,
+    displayEnd: 2024,
     title: {
       en: "Teacher Assistant",
       es: "Ayudante de Cátedra",
@@ -144,7 +148,8 @@ export const timeline: TimelineEntry[] = [
   {
     id: "daad-gropius",
     start: 2023,
-    end: 2024,
+    end: 2024.9,
+    displayEnd: 2024,
     title: {
       en: "Academic Team",
       es: "Equipo Académico",
@@ -179,8 +184,9 @@ export const timeline: TimelineEntry[] = [
   },
   {
     id: "independent-architect",
-    start: 2025,
+    start: 2024.9,
     end: "current",
+    displayStart: 2025,
     title: {
       en: "Independent Architect",
       es: "Arquitecta Independiente",

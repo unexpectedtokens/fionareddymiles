@@ -23,7 +23,6 @@ export type Project = {
     colStart?: number;
   };
   year: string;
-  month: Localized;
   location: Localized;
   type: Localized;
   shouldBeFeatured?: boolean;
@@ -109,7 +108,6 @@ export const projects: Project[] = [
       },
     ],
     year: "2022",
-    month: { en: "July", es: "Julio" },
     location: {
       en: "Buenos Aires, Argentina",
       es: "Buenos Aires, Argentina",
@@ -213,7 +211,6 @@ export const projects: Project[] = [
       },
     ],
     year: "2023",
-    month: { en: "January", es: "Enero" },
     location: {
       en: "Buenos Aires, Argentina",
       es: "Buenos Aires, Argentina",
@@ -293,7 +290,6 @@ export const projects: Project[] = [
       },
     ],
     year: "2020",
-    month: { en: "December", es: "Diciembre" },
     location: {
       en: "Buenos Aires, Argentina",
       es: "Buenos Aires, Argentina",
@@ -351,7 +347,6 @@ export const projects: Project[] = [
       },
     ],
     year: "2021",
-    month: { en: "December", es: "Diciembre" },
     location: {
       en: "Buenos Aires, Argentina",
       es: "Buenos Aires, Argentina",
