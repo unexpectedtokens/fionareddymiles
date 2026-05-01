@@ -120,13 +120,13 @@ function RootShell({ lang }: { lang: Locale }) {
             <button onClick={handleProjects} className="text-left">
               {t("projects")}
             </button>
-            {/* <Link
+            <Link
               to="/$lang/timeline"
               params={{ lang }}
               onClick={() => setMenuOpen(false)}
             >
               {t("timeline")}
-            </Link> */}
+            </Link>
             <Link
               to="/$lang/about"
               params={{ lang }}
