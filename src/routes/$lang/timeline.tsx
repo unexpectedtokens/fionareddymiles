@@ -107,36 +107,17 @@ function TimelinePage() {
       className="min-h-screen text-[#111]"
       style={{ fontFamily: '"Alte Haas Grotesk", sans-serif' }}
     >
-      <div className="px-6 md:px-12 pt-10 max-w-6xl mx-auto">
-        <Link
-          to="/$lang"
-          params={{ lang }}
-          className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M10 3L5 8L10 13"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          {t("back")}
-        </Link>
-      </div>
-
-      <main className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto">
+      <main className="px-6 md:px-12 py-48 max-w-8xl mx-auto">
         <h1 className="rise-in text-[36px] md:text-[48px] font-medium leading-tight mb-50">
           {t("title")}
         </h1>
 
         <div
-          className="rise-in no-scrollbar overflow-x-auto -mx-6 md:mx-0 px-6 md:px-0"
+          className="rise-in no-scrollbar overflow-x-auto md:overflow-x-visible -mx-6 md:mx-0 px-6 md:px-0"
           style={{ animationDelay: "240ms" }}
         >
           <div
-            className="relative"
+            className="relative md:min-w-0!"
             style={{
               height: chartHeight,
               minWidth: 720,
@@ -279,7 +260,7 @@ function TimelineModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-51 flex items-center justify-center p-4 md:p-8"
       role="dialog"
       aria-modal="true"
       onClick={onClose}

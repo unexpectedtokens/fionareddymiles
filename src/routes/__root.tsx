@@ -165,9 +165,9 @@ function RootShell({ lang }: { lang: Locale }) {
       )}
 
       <nav
-        className={`fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-12 transition-transform duration-700 ease-in-out ${isIndex && !scrolled ? "translate-y-full" : "translate-y-0"}`}
+        className={`fixed bottom-0 inset-x-0 bg-white z-50 py-4 md:py-6 transition-transform duration-700 ease-in-out ${isIndex && !scrolled ? "translate-y-full" : "translate-y-0"}`}
       >
-        <div className="max-w-6xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8">
+        <div className="max-w-8xl mx-auto px-5 md:px-12 flex items-center gap-4 md:gap-8">
           <Link
             to="/$lang"
             params={{ lang }}
