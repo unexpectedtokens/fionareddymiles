@@ -135,10 +135,10 @@ function App() {
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 flex flex-col items-center text-center text-white">
-          <h1 className="text-[32px] md:text-[52px] font-extrabold tracking-[0.05em] uppercase">
+          <h1 className="text-[25px] md:text-[52px] font-extrabold tracking-[0.05em] uppercase">
             {t("name")}
           </h1>
-          <p className="mt-2 text-[14px] md:text-[18px] tracking-[0.18em] uppercase font-light text-black">
+          <p className="mt-2 text-[12px] md:text-[18px] tracking-[0.18em] uppercase font-light text-black">
             {t("subtitle")}
           </p>
           <button
@@ -167,7 +167,7 @@ function App() {
 
       <section
         id="projects"
-        className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto"
+        className="px-6 md:px-12 pt-10 pb-48 max-w-8xl mx-auto"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 auto-rows-[320px]">
           {projects.map((project, i) => (

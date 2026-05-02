@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "use-intl";
 import { timeline, type TimelineEntry } from "../../data/timeline";
@@ -315,8 +315,8 @@ function TimelineModal({
                   key={i}
                   className="pt-5 border-t border-[#e5e3e0] first:border-t-0 first:pt-0"
                 >
-                  <div className="flex items-start justify-between gap-4 flex-wrap">
-                    <h3 className="text-[16px] font-semibold text-[#111]">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-[16px] font-semibold text-[#111] min-w-0 flex-1">
                       {sub.title[locale]}
                     </h3>
                     {sub.link && (
@@ -324,7 +324,7 @@ function TimelineModal({
                         href={sub.link}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="inline-flex items-center gap-2 bg-black text-white text-[12px] font-semibold px-3 py-2 hover:bg-[#333] transition-colors"
+                        className="inline-flex items-center gap-2 bg-black text-white text-[12px] font-semibold px-3 py-2 rounded-sm hover:bg-[#333] transition-colors shrink-0"
                       >
                         {labels.visitWebsite}
                         <svg
@@ -360,7 +360,7 @@ function TimelineModal({
                 href={entry.link}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 bg-black text-white text-[13px] font-semibold px-4 py-3 hover:bg-[#333] transition-colors"
+                className="inline-flex items-center gap-2 bg-black text-white text-[13px] font-semibold px-4 py-3 rounded-sm hover:bg-[#333] transition-colors"
               >
                 {labels.visitWebsite}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

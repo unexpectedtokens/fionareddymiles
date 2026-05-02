@@ -120,13 +120,13 @@ export function Gallery({ images, index, onClose, onNavigate }: Props) {
       <img
         src={image.src}
         alt=""
+        width={image.width}
+        height={image.height}
         onClick={(e) => e.stopPropagation()}
-        className="block"
+        className="block w-auto h-auto max-w-[100vw] max-h-[calc(100vh-80px)] object-contain"
         style={{
-          maxWidth: image.width,
-          maxHeight: window.innerHeight - 80,
-          width: "100%",
-          height: "auto",
+          maxWidth: `min(100vw, ${image.width}px)`,
+          maxHeight: `min(calc(100vh - 80px), ${image.height}px)`,
         }}
       />
 

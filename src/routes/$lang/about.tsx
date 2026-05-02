@@ -11,31 +11,11 @@ function About() {
       className="min-h-screen text-[#111]"
       style={{ fontFamily: '"Alte Haas Grotesk", sans-serif' }}
     >
-      {/* Back button */}
-      <div className="px-6 md:px-12 pt-10 max-w-6xl mx-auto">
-        <Link
-          to="/$lang"
-          params={{ lang }}
-          className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M10 3L5 8L10 13"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          {t("back")}
-        </Link>
-      </div>
-
       {/* Content */}
-      <main className="px-6 md:px-12 pt-10 pb-48 max-w-6xl mx-auto">
+      <main className="px-6 md:px-12 pt-20 pb-48 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Photo */}
-          <div className="rise-in">
+          <div className="rise-in ">
             <img src="/about.jpeg" alt="Fiona Reddy Miles" />
           </div>
 
