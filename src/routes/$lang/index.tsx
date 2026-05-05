@@ -94,11 +94,11 @@ function ProjectCard({ project }: { project: Project }) {
       className="block group h-full"
     >
       <article className="h-full flex flex-col">
-        <div className="overflow-hidden relative flex-1">
+        <div className="overflow-hidden relative">
           <img
             src={project.presentationImage.src}
             alt=""
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out"
+            className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-500 ease-out"
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-colors duration-300" />
         </div>
@@ -169,7 +169,7 @@ function App() {
         id="projects"
         className="px-6 md:px-12 pt-10 pb-48 max-w-8xl mx-auto"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 auto-rows-[320px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10 auto-rows-[320px)]">
           {projects.map((project, i) => (
             <ProjectGridCell key={project.slug} project={project} index={i} />
           ))}

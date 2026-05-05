@@ -1,10 +1,9 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useTranslations } from "use-intl";
 
 export const Route = createFileRoute("/$lang/about")({ component: About });
 
 function About() {
-  const { lang } = Route.useParams();
   const t = useTranslations("about");
   return (
     <div
