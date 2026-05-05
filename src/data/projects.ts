@@ -3,6 +3,7 @@ type Image = {
   wide: boolean;
   width: number;
   height: number;
+  fullHeight?: boolean;
 };
 
 export type Localized = {
@@ -247,18 +248,21 @@ export const projects: Project[] = [
         wide: true,
         width: 4963,
         height: 3508,
+        fullHeight: true,
       },
       {
         src: "/casatimbo/04.cortes.png",
         wide: true,
         width: 4963,
         height: 3508,
+        fullHeight: true,
       },
       {
         src: "/casatimbo/05.vistas.png",
         wide: true,
         width: 4963,
         height: 3508,
+        fullHeight: true,
       },
       {
         src: "/casatimbo/render_06%20-%20Photo.png",

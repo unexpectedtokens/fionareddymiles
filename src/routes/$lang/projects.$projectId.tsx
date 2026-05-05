@@ -26,7 +26,7 @@ function ProjectDetail() {
         <Link
           to="/$lang"
           params={{ lang }}
-          className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-all duration-200"
+          className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111] hover:text-[#555] hover:-translate-x-1 transition-transform duration-200"
         >
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
@@ -44,17 +44,28 @@ function ProjectDetail() {
       {/* Main grid: 2/5 text | 3/5 collage */}
       <div className="px-6 md:px-12 pt-10 pb-32 grid grid-cols-4 gap-12 items-start max-w-8xl mx-auto">
         {/* Left: text */}
-        <div className="col-span-4 md:col-span-1 flex flex-col gap-8">
+        <div className="col-span-4 xl:col-span-1 flex flex-col gap-8">
           <header>
             <h1 className="text-[36px] md:text-[48px] font-medium leading-tight mb-4">
               {project?.title[locale] ?? projectId}
             </h1>
             <div className="flex flex-col gap-1 text-[13px] text-[#888]">
-              <span>{t("location")}: <span className="font-bold">{project?.location[locale]}</span></span>
-              <span>{t("year")}: <span className="font-bold">{project?.year}</span></span>
-              <span>{t("type")}: <span className="font-bold">{project?.type[locale]}</span></span>
+              <span>
+                {t("location")}:{" "}
+                <span className="font-bold">{project?.location[locale]}</span>
+              </span>
+              <span>
+                {t("year")}: <span className="font-bold">{project?.year}</span>
+              </span>
+              <span>
+                {t("type")}:{" "}
+                <span className="font-bold">{project?.type[locale]}</span>
+              </span>
               {project?.surface && (
-                <span>{t("surface")}: <span className="font-bold">{project.surface}</span></span>
+                <span>
+                  {t("surface")}:{" "}
+                  <span className="font-bold">{project.surface}</span>
+                </span>
               )}
             </div>
           </header>
@@ -66,17 +77,19 @@ function ProjectDetail() {
               </p>
             ))}
           </div>
-
         </div>
 
         {/* Right: collage */}
-        <div className="col-span-4 md:col-span-3">
+        <div className="col-span-4 xl:col-span-3">
           <div className="grid grid-cols-2 gap-3">
             {(project?.imageCollage ?? []).map((item, i) => (
               <div
                 key={i}
-                className={`rise-in ${item.wide ? "col-span-2" : ""}`}
-                style={{ animationDelay: `${i * 80}ms` }}
+                className={`rise-in ${item.wide || item.fullHeight ? "col-span-2" : ""} ${item.fullHeight ? "flex items-center" : ""}`}
+                style={{
+                  animationDelay: `${i * 80}ms`,
+                  ...(item.fullHeight && { minHeight: "100vh" }),
+                }}
               >
                 <img
                   src={item.src}
