@@ -50,9 +50,12 @@ function ProjectDetail() {
               {project?.title[locale] ?? projectId}
             </h1>
             <div className="flex flex-col gap-1 text-[13px] text-[#888]">
-              <span>{project?.location[locale]}</span>
-              <span>{project?.year}</span>
-              <span>{project?.type[locale]}</span>
+              <span>{t("location")}: <span className="font-bold">{project?.location[locale]}</span></span>
+              <span>{t("year")}: <span className="font-bold">{project?.year}</span></span>
+              <span>{t("type")}: <span className="font-bold">{project?.type[locale]}</span></span>
+              {project?.surface && (
+                <span>{t("surface")}: <span className="font-bold">{project.surface}</span></span>
+              )}
             </div>
           </header>
 
@@ -64,16 +67,6 @@ function ProjectDetail() {
             ))}
           </div>
 
-          {project?.personal_role[locale] && (
-            <div className="pt-4 border-t border-[#e0dedd]">
-              <p className="text-[11px] uppercase tracking-widest text-[#aaa] mb-1">
-                {t("role")}
-              </p>
-              <p className="text-[13px] text-[#555]">
-                {project.personal_role[locale]}
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Right: collage */}

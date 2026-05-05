@@ -29,7 +29,10 @@ const es: Messages = {
   },
   project: {
     back: "Volver",
-    role: "Rol",
+    location: "Ubicación",
+    year: "Año",
+    type: "Tipo",
+    surface: "Superficie",
   },
   timeline: {
     back: "Volver",

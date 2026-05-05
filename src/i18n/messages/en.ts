@@ -27,7 +27,10 @@ const en = {
   },
   project: {
     back: "Back",
-    role: "Role",
+    location: "Location",
+    year: "Year",
+    type: "Type",
+    surface: "Surface area",
   },
   timeline: {
     back: "Back",
